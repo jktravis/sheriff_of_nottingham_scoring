@@ -4,6 +4,7 @@ injectGlobal`
     * {
         box-sizing: border-box;
         font-family: "Helvetica Neue", sans-serif;
+        zoom: 80%;
     }
 
     body {
