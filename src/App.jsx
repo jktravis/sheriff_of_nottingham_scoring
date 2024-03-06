@@ -4,6 +4,7 @@ import Logo from "./Logo.jsx";
 import LeaderOfHeader from "./LeaderOfHeader.jsx";
 import Score from "./Score.jsx";
 import {cx} from '@emotion/css'
+console.log(import.meta.env.BASE_URL)
 
 const playerOrder = ["black", "blue", "green", "purple", "red", "yellow"];
 
@@ -306,7 +307,7 @@ function App() {
                 <th key={name} scope="col">
                   <img
                     alt={`${name} player`}
-                    src={`/public/images/${name}Player.gif`}
+                    src={`images/${name}Player.gif`}
                   />
                 </th>
               );
@@ -322,6 +323,7 @@ function App() {
               ? name.replace("kingOf", "queenOf")
               : null;
 
+            console.log('')
             return (
               <tr key={name} className={cx({
                 stripe: idx % 2 === 0
@@ -335,7 +337,7 @@ function App() {
                         className="header-icons"
                         key={name}
                         alt={`${name} score`}
-                        src={`/public/images/${name}.gif`}
+                        src={`images/${name}.gif`}
                       />
                     )}
                   </th>

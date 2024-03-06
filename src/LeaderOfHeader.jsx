@@ -3,8 +3,8 @@ import React from "react";
 function LeaderOfHeader({ name }) {
   return (
     <div className="header-icons">
-      <img src="/public/images/leaderOf.gif" alt="leader of" />
-      <img src={`/public/images/${name}.gif`} alt={name} />
+      <img src="images/leaderOf.gif" alt="leader of" />
+      <img src={`images/${name}.gif`} alt={name} />
     </div>
   );
 }

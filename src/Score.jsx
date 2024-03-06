@@ -19,12 +19,12 @@ function Score({
       {R.cond([
         [
           R.allPass([R.always(isKingOf), R.always(isHeader), R.always(score)]),
-          () => <img src="/public/images/kingOf.gif" alt={`King of ${name}`} />,
+          () => <img src="images/kingOf.gif" alt={`King of ${name}`} />,
         ],
         [
           R.allPass([R.always(isQueenOf), R.always(isHeader)]),
           () => (
-            <img src="/public/images/queenOf.gif" alt={`Queen of ${name}`} />
+            <img src="images/queenOf.gif" alt={`Queen of ${name}`} />
           ),
         ],
         [
