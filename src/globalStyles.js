@@ -2,10 +2,9 @@ import { injectGlobal } from "@emotion/css";
 
 injectGlobal`
     * {
-        box-sizing: border-box;
         font-family: "Helvetica Neue", sans-serif;
     }
-
+    
     body {
         background: #ebe2cb;
         padding-bottom: 5rem;
@@ -107,8 +106,8 @@ injectGlobal`
             height: 100%;
             width: auto;
             margin: 0 auto;
-            transform: scale(3);       /* the "zoom in" */
-            transform-origin: 50% 50%;   /* zoom from the center, so it crops evenly on all sides */
+            transform: scale(4);       /* the "zoom in" */
+            transform-origin: 50% 30%;   /* zoom from the center, so it crops evenly on all sides */
         }
 
         /* Sticky first column: row icons + logo cell */
