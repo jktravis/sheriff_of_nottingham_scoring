@@ -41,13 +41,15 @@ function Score({
           () => (
             <>
               <label
+                className="visually-hidden"
                 htmlFor={id}
               >{`Total ${["contraband", "money"].includes(name) ? "Value" : "Number/Count"} Only`}</label>
               <input
                 type="number"
+                placeholder="0"
                 min={0}
                 id={id}
-                value={value}
+                value={value || undefined}
                 onChange={(event) => {
                   const next = event.target.value;
                   setScores(R.set(R.lensPath([idx, name]), Number(next)));

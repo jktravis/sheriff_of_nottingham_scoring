@@ -296,121 +296,123 @@ function App() {
   return (
     <div>
       <main>
-        <table>
-          <thead>
-          <tr>
-            <th className="logo-cell">
-              <Logo/>
-            </th>
-            {playerOrder.map((name) => {
-              return (
-                <th key={name} scope="col">
-                  <img
-                    alt={`${name} player`}
-                    src={`images/${name}Player.gif`}
-                  />
-                </th>
-              );
-            })}
-          </tr>
-          </thead>
-          <tbody>
-          {scoringOrder.map((name, idx) => {
-            const stringSplit = name.split("kingOf");
-            const kingOfName = stringSplit[1]?.toLowerCase();
-            const valueKey = computedScores[kingOfName] ? kingOfName : name;
-            const queenOfName = kingOfName
-              ? name.replace("kingOf", "queenOf")
-              : null;
-
-            console.log('')
-            return (
-              <tr key={name} className={cx({
-                stripe: idx % 2 === 0
-              })}>
-                {
-                  <th>
-                    {kingOfName ? (
-                      <LeaderOfHeader name={kingOfName}/>
-                    ) : (
-                      <img
-                        className="header-icons"
-                        key={name}
-                        alt={`${name} score`}
-                        src={`images/${name}.gif`}
-                      />
-                    )}
-                  </th>
-                }
-                {computedScores[valueKey].map((value, idx) => {
-                  const key = `${name}-value-${idx}`;
-
-                  const score = computedScores[name][idx];
-
-                  const isHeader = Boolean(kingOfName);
-                  const isKingOf = kingOfName
-                    ? computedScores[kingOfName][idx]
-                    : false;
-                  const isQueenOf = queenOfName
-                    ? computedScores[queenOfName][idx]
-                    : false;
-
-                  const isTied = R.any(R.identity, [
-                    computedScores["tiedForBreadKing"][idx] || false,
-                    computedScores["tiedForAppleKing"][idx] || false,
-                    computedScores["tiedForCheeseKing"][idx] || false,
-                    computedScores["tiedForChickenKing"][idx] || false,
-                    computedScores["tiedForBreadQueen"][idx] || false,
-                    computedScores["tiedForAppleQueen"][idx] || false,
-                    computedScores["tiedForCheeseQueen"][idx] || false,
-                    computedScores["tiedForChickenQueen"][idx] || false,
-                  ]);
-
-                  return (
-                    <Score
-                      key={key}
-                      name={name}
-                      score={score}
-                      isHeader={isHeader}
-                      isTied={isTied}
-                      isKingOf={isKingOf}
-                      isQueenOf={isQueenOf}
-                      lowerName={kingOfName}
-                      setScores={setScores}
-                      computedScores={computedScores}
-                      idx={idx}
-                      value={value}
+        <div className="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th className="logo-cell">
+                <Logo/>
+              </th>
+              {playerOrder.map((name) => {
+                return (
+                  <th key={name} scope="col">
+                    <img
+                      alt={`${name} player`}
+                      src={`images/${name}Player.gif`}
                     />
-                  );
-                })}
-              </tr>
-            );
-          })}
+                  </th>
+                );
+              })}
+            </tr>
+            </thead>
+            <tbody>
+            {scoringOrder.map((name, idx) => {
+              const stringSplit = name.split("kingOf");
+              const kingOfName = stringSplit[1]?.toLowerCase();
+              const valueKey = computedScores[kingOfName] ? kingOfName : name;
+              const queenOfName = kingOfName
+                ? name.replace("kingOf", "queenOf")
+                : null;
 
-          <tr className="total-row">
-            <td className="total-header">Total</td>
-            {computedScores.total.map((value, idx, array) => {
-              const {maxScore, message} = getWinner(
-                scores,
-                value,
-                idx,
-                array,
-              );
+              console.log('')
               return (
-                <td key={idx}>
-                  <div className="total-value">{value}</div>
-                  <div className="total-result">
-                    <div>{maxScore === value && message.result}</div>
-                    <div className="total-message-context">
-                      {message.context}
-                    </div>
-                  </div>
-                </td>
+                <tr key={name} className={cx({
+                  stripe: idx % 2 === 0
+                })}>
+                  {
+                    <th>
+                      {kingOfName ? (
+                        <LeaderOfHeader name={kingOfName}/>
+                      ) : (
+                        <img
+                          className="header-icons"
+                          key={name}
+                          alt={`${name} score`}
+                          src={`images/${name}.gif`}
+                        />
+                      )}
+                    </th>
+                  }
+                  {computedScores[valueKey].map((value, idx) => {
+                    const key = `${name}-value-${idx}`;
+
+                    const score = computedScores[name][idx];
+
+                    const isHeader = Boolean(kingOfName);
+                    const isKingOf = kingOfName
+                      ? computedScores[kingOfName][idx]
+                      : false;
+                    const isQueenOf = queenOfName
+                      ? computedScores[queenOfName][idx]
+                      : false;
+
+                    const isTied = R.any(R.identity, [
+                      computedScores["tiedForBreadKing"][idx] || false,
+                      computedScores["tiedForAppleKing"][idx] || false,
+                      computedScores["tiedForCheeseKing"][idx] || false,
+                      computedScores["tiedForChickenKing"][idx] || false,
+                      computedScores["tiedForBreadQueen"][idx] || false,
+                      computedScores["tiedForAppleQueen"][idx] || false,
+                      computedScores["tiedForCheeseQueen"][idx] || false,
+                      computedScores["tiedForChickenQueen"][idx] || false,
+                    ]);
+
+                    return (
+                      <Score
+                        key={key}
+                        name={name}
+                        score={score}
+                        isHeader={isHeader}
+                        isTied={isTied}
+                        isKingOf={isKingOf}
+                        isQueenOf={isQueenOf}
+                        lowerName={kingOfName}
+                        setScores={setScores}
+                        computedScores={computedScores}
+                        idx={idx}
+                        value={value}
+                      />
+                    );
+                  })}
+                </tr>
               );
             })}
-          </tr>
-          </tbody>
-        </table>
+
+            <tr className="total-row">
+              <td className="total-header">Total</td>
+              {computedScores.total.map((value, idx, array) => {
+                const {maxScore, message} = getWinner(
+                  scores,
+                  value,
+                  idx,
+                  array,
+                );
+                return (
+                  <td key={idx}>
+                    <div className="total-value">{value}</div>
+                    <div className="total-result">
+                      <div>{maxScore === value && message.result}</div>
+                      <div className="total-message-context">
+                        {message.context}
+                      </div>
+                    </div>
+                  </td>
+                );
+              })}
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </main>
       <footer>
         <div>
